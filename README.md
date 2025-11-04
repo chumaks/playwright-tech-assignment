@@ -78,12 +78,6 @@ Why I've selected these scenarios: I chose these scenarios because they cover th
 - Add snapshot tests to validate UI elements such as image carousels (ensuring correct images are displayed when navigating between slides).
 - Introduce a CI configuration (YAML file) to automate test runs as part of a continuous integration pipeline.
 - Generate custom test reports and integrate with Slack or similar channels to automatically share test results with the team.
-
-### Landing Page Tests
-- ✓ Reviews "Show more" button functionality
+- Run tests in Docker
 
 **Base URL**: `https://test-qa.capslock.global/`
-
-
-
-This is a technical assignment project. 
