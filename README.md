@@ -1,15 +1,6 @@
 # Playwright Tech Assignment
 
-This repository contains automated end-to-end tests for a landing page with a multi-step dialog form, built using Playwright.
-
-## 📋 Table of Contents
-
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Running Tests](#running-tests)
-- [Project Structure](#project-structure)
-- [Test Coverage](#test-coverage)
-- [Configuration](#configuration)
+This repository contains automated end-to-end tests for a landing page built using Playwright.
 
 ## 🔧 Prerequisites
 
@@ -42,27 +33,6 @@ Before running the tests, ensure you have the following installed:
 ```bash
 npx playwright test
 ```
-
-### Run tests in headed mode (with browser UI visible)
-```bash
-npm run test:headed
-```
-
-### Run tests with Playwright UI mode (interactive mode)
-```bash
-npm run test:ui
-```
-
-### Run tests in debug mode
-```bash
-npm run test:debug
-```
-
-### Run a specific test file
-```bash
-npx playwright test tests/landing.spec.ts
-```
-
 ### View test report
 After running tests, view the HTML report:
 ```bash
@@ -88,7 +58,7 @@ playwright-tech-assignment/
 
 The test suite covers the following scenarios:
 
-### Dialog Form Tests
+### Implemented tests
 - ✓ Complete form submission flow with valid data
 - ✓ Unsupported zip code handling
 - ✓ Step counter validation (currently skipped due to bug)
@@ -98,41 +68,22 @@ The test suite covers the following scenarios:
 - ✓ Form isolation (errors in one form don't affect another)
 - ✓ Page refresh behavior
 
+Why I've selected these scenarios: I chose these scenarios because they cover the most critical user interactions on the landing page. The main purpose of end-to-end tests is to ensure that all key user actions — particularly call-to-action (CTA) buttons and form submissions — work as expected. From a user’s perspective, it’s essential to verify that every interactive element functions correctly, transitions between steps are smooth, and input validations behave as intended. These tests help ensure that the user experience remains consistent and reliable across typical and edge-case scenarios.
+
+### What improvements could be made: 
+- Add multi-browser support
+- Add tests for mobile layouts to verify responsive design and mobile usability
+- Increase the number of workers to enable faster parallel test execution
+- Avoid hardcoded test data — use libraries such as faker.js to generate random user data (e.g., name, email, phone).
+- Add snapshot tests to validate UI elements such as image carousels (ensuring correct images are displayed when navigating between slides).
+- Introduce a CI configuration (YAML file) to automate test runs as part of a continuous integration pipeline.
+- Generate custom test reports and integrate with Slack or similar channels to automatically share test results with the team.
+
 ### Landing Page Tests
 - ✓ Reviews "Show more" button functionality
 
-## ⚙️ Configuration
-
-The tests are configured to run on multiple browsers:
-- Chromium (Chrome/Edge)
-- Firefox
-- WebKit (Safari)
-
 **Base URL**: `https://test-qa.capslock.global/`
 
-Additional settings:
-- **Parallel execution**: Enabled
-- **Screenshots**: Captured on failure
-- **Trace**: Captured on first retry
-- **Reporter**: HTML
 
-## 📝 Notes
 
-### Known Issues (documented in tests)
-1. Step counter shows "2 of 5" instead of "3 of 5" for the third step
-2. Some tests document UX considerations for improvement
-
-### Test Data Constants
-The tests use standardized test data:
-- **Name**: `Serhii QA`
-- **Email**: `serhii.qa@test.com`
-- **Phone**: `2345678901`
-- **Zip Code**: `10001` (valid), `12345` (unsupported), `1234` (invalid)
-
-## 🤝 Contributing
-
-This is a technical assignment project. For questions or issues, please contact the repository owner.
-
-## 📄 License
-
-ISC
+This is a technical assignment project. 

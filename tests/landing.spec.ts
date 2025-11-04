@@ -41,10 +41,11 @@ test.describe('Landing page tests', () => {
 
   test('Appropriate error message is shown for wrong zip code', async ({ page }) => {
     await dialogForm.enterZipCode('1234');
+    await dialogForm.clickNext();
 
     await expect(dialogForm.formContainer.getByText('Wrong ZIP code.')).toBeVisible();
 
-    await dialogForm.clickNext();
+    
 
     await expect(dialogForm.zipCodeInput).toBeVisible();
 
@@ -91,15 +92,16 @@ test.describe('Landing page tests', () => {
 
   });
 
-  test('Unsupported zip code', async ({ page }) => {
+  test('Appropriate message is shown for not supported zip code', async ({ page }) => {
     await dialogForm.enterZipCode('12345');
     await dialogForm.clickNext();
 
     await expect(dialogForm.formContainer.getByText('Sorry, unfortunately we don’t yet install in your area but if you’d like us to notify you when we do please enter your email address below')).toBeVisible();
 
-    await dialogForm.emailInput.fill('john.doe@example.com');
+    await dialogForm.emailInputForUnknownZipCode.fill('john.doe@example.com');
+    await dialogForm.submitYourRequestButtonForUnknownZipCode.click();
 
-    await expect(dialogForm.formContainer.getByText('Thank you for your interest. We will notify you when we are in your area.')).toBeVisible();
+    await expect(dialogForm.formContainer.getByText('Thank you for your interest, we will contact you when our service becomes available in your area!')).toBeVisible();
 
   });
 
@@ -127,7 +129,7 @@ test.describe('Landing page tests', () => {
     await expect(dialogForm.formContainer.getByText('5 of 5')).toBeVisible();
   });
 
-  test('Error on the first form shouldnt affect the second form', async ({ page }) => {
+  test('Error on the first form should not affect the second form', async ({ page }) => {
     const dialogForm2 = new DialogForm(page, 'form-container-2');
     
     await dialogForm.enterZipCode('1234');
@@ -159,7 +161,7 @@ test.describe('Landing page tests', () => {
   });
 
   // BTW, I think it's also a UX bug: page refresh should not reset the form
-  test('Page refresh does not affect the form', async ({ page }) => {
+  test('Page refresh does not affect the entered data in the form', async ({ page }) => {
     await dialogForm.enterZipCode(correctZipCode);;
     await dialogForm.clickNext();
     await dialogForm.chooseInterestedInOption('Independence');

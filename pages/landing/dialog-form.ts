@@ -6,8 +6,10 @@ export class DialogForm {
   readonly nextButton: Locator;
   readonly getEstimateButton: Locator;
   readonly submitYourRequestButton: Locator;
+  readonly submitYourRequestButtonForUnknownZipCode: Locator;
   readonly nameInput: Locator;
   readonly emailInput: Locator;
+  readonly emailInputForUnknownZipCode: Locator;
   readonly phoneInput: Locator;
   readonly zipCodeInput: Locator;
 
@@ -18,9 +20,11 @@ export class DialogForm {
     this.nextButton = this.formContainer.getByRole('button', { name: 'Next ' });
     this.getEstimateButton = this.formContainer.getByRole('button', { name: 'Go To Estimate' });
     this.submitYourRequestButton = this.formContainer.getByRole('button', { name: 'Submit Your Request' });
+    this.submitYourRequestButtonForUnknownZipCode = this.formContainer.getByRole('button', { name: 'Submit' });
     //inputs
     this.nameInput = this.formContainer.getByRole('textbox', { name: 'Enter Your Name' });
     this.emailInput = this.formContainer.getByRole('textbox', { name: 'Enter Your Email' });
+    this.emailInputForUnknownZipCode = this.formContainer.getByRole('textbox', { name: 'Email Address' });
     this.phoneInput = this.formContainer.getByRole('textbox', { name: '(XXX)XXX-XXXX' })
     this.zipCodeInput = this.formContainer.getByRole('textbox', { name: 'Enter ZIP Code' });
   }
