@@ -1,5 +1,5 @@
 import { LandingPage } from '../pages/landing/page';
-import { DialogForm } from '../pages/landing/dialog-form';
+import { DialogForm } from '../pages/landing/components/dialog-form';
 import { test } from '@playwright/test';
 import { expect } from '@playwright/test';
 
