@@ -81,3 +81,44 @@ Why I've selected these scenarios: I chose these scenarios because they cover th
 - Run tests in Docker
 
 **Base URL**: `https://test-qa.capslock.global/`
+
+### Founded bugs
+1. '2 of 5' progress title shown instead of '3 of 5' for the third step in the dialog form
+STR:
+1. Open https://test-qa.capslock.global/
+2. Scroll to the first dialog form
+3. Enter valid ZIP code ('10001', for example)
+4. Click on the 'Next' button -> Next step is shown. '2 of 5' counter steps is appeared
+5. Choose any option on the next step ('Safety', for example)
+6. Click on the 'Next' button
+
+ER: '3 of 5' progress title shown. Progress bar is changed
+AR: '2 of 5' progress title still shown. Progress bar is not changed
+
+2. '1 of ' progress title shown for the unsupported code
+STR:
+1. Open https://test-qa.capslock.global/
+2. Scroll to the first dialog form
+3. Enter unsupported ZIP code ('12345', for example)
+4. Click on the 'Next' button -> Next step is shown
+
+ER: '1 of %count of steps for this case% progress title shown
+AR: '1 of ' progress title shown for the unsupported code. It still shown if enter valid email and proceed to the next step
+
+Potential UX bugs
+
+3. Dialog form progress resets to step 1 after refresh
+STR:
+1. Open https://test-qa.capslock.global/
+2. Scroll to the first dialog form
+3. Enter valid ZIP code ('10001', for example)
+4. Click on the 'Next' button
+5. Choose any option on the next step -> Step 3 shown
+6. Refresh the page
+7. Scroll ot the dialog form
+
+ER: Dialog form progress still on the step 3
+AR: Dialog form progress resets to step 1
+
+4. Dialog form doesn't have back button
+ER: From the UX perspective tt should be possible to return to the previous step and change your option (email, zip, etc)

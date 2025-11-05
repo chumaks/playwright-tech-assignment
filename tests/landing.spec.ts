@@ -45,7 +45,7 @@ test.describe('Landing page tests', () => {
 
     await expect(dialogForm.formContainer.getByText('Wrong ZIP code.')).toBeVisible();
 
-    
+    await dialogForm.clickNext();
 
     await expect(dialogForm.zipCodeInput).toBeVisible();
 
@@ -105,7 +105,7 @@ test.describe('Landing page tests', () => {
 
   });
 
-  // skipped because the steps counter has a bug: '2 of 5' step shown instea of '3 of 5' for the third step. But in general this case on with a top priority.
+  // skipped because the steps counter has a bug: '2 of 5' step shown instead of '3 of 5' for the third step.
   test.skip('Steps counter shows right sequence of steps', async ({ page }) => {
     await dialogForm.enterZipCode(correctZipCode);
     await dialogForm.clickNext();
